@@ -3,6 +3,9 @@
 A Spectrum Color Picker as a plugin for the Camunda Modeler.
 
 This project was inspired by:
+- https://github.com/camunda-consulting/code/tree/master/snippets/camunda-modeler-plugins/bpmn-js-plugin-color-picker
+
+And uses:
 - https://npm.io/package/@simonwep/pickr
 - https://npm.io/package/tinycolor2
 - https://icons8.com/icon/pack/editing/metro
