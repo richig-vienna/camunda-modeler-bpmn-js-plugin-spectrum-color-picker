@@ -3,9 +3,9 @@
 A Spectrum Color Picker as a plugin for the Camunda Modeler.
 
 This project was inspired by:
-https://npm.io/package/@simonwep/pickr
-FROM https://npm.io/package/tinycolor2
-FROM https://icons8.com/icon/pack/editing/metro
+- https://npm.io/package/@simonwep/pickr
+- https://npm.io/package/tinycolor2
+- https://icons8.com/icon/pack/editing/metro
 
 ## How it looks like
 ![Screenshot](screenshot.png)
