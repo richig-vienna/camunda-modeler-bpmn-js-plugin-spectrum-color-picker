@@ -238,7 +238,7 @@ function setButtons(pickr, self) {
         var tmpHSV = tinycolor(fillString).toHsv();
         tmpHSV.s = 1; // saturation to max.
         
-        strokeString = tinycolor(tmpHSV).toHex();
+        strokeString = "#" + tinycolor(tmpHSV).toHex();
       }
       
 	  self.selectedElements.forEach(function(selElem) {
@@ -280,7 +280,7 @@ function setButtons(pickr, self) {
     // console.log("btn_pickrStroke");
     
     if (!self.mode_pickrStroke) self.colorFill = pickr.getColor().toHEXA().toString();
-    if (pickr != null) {
+    if (pickr != null && self.colorStroke) {
       pickr.setColor(self.colorStroke, true);
     }
         
@@ -296,7 +296,7 @@ function setButtons(pickr, self) {
     // console.log("btn_pickrAuto");
     
     if (self.mode_pickrStroke) self.colorStroke = pickr.getColor().toHEXA().toString();
-    if (pickr != null) {
+    if (pickr != null && self.colorFill) {
       pickr.setColor(self.colorFill, true);
     }
     togglePickrMode("btn_pickrAuto");
@@ -311,7 +311,7 @@ function setButtons(pickr, self) {
     // console.log("btn_pickrFill");
     
     if (self.mode_pickrStroke) self.colorStroke = pickr.getColor().toHEXA().toString();
-    if (pickr != null) {
+    if (pickr != null && self.colorFill) {
       pickr.setColor(self.colorFill, true);
     }
     togglePickrMode("btn_pickrFill");
