@@ -1,6 +1,6 @@
 # BPMN Spectrum ColorPicker Plugin
 
-![Build Status](https://github.com/pinussilvestrus/camunda-modeler-autosave-plugin/workflows/ci/badge.svg) [![Compatible with Camunda Modeler version 5](https://img.shields.io/badge/Modeler_Version-5.0.0+-blue.svg)](#) [![Plugin Type](https://img.shields.io/badge/Plugin_Type-BPMN_(Camunda_Platform_8)-orange.svg)](#) [![Plugin Type](https://img.shields.io/badge/Plugin_Type-BPMN-orange.svg)](#)
+[![Compatible with Camunda Modeler version 5](https://img.shields.io/badge/Modeler_Version-5.0.0+-blue.svg)](#) [![Plugin Type](https://img.shields.io/badge/Plugin_Type-BPMN_(Camunda_Platform_8)-orange.svg)](#) [![Plugin Type](https://img.shields.io/badge/Plugin_Type-BPMN-orange.svg)](#)
 
 ## Functionality
 A Spectrum Color Picker as a plugin for the Camunda Modeler.
