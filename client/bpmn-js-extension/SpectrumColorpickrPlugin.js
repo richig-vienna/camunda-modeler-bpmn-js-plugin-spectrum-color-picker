@@ -6,12 +6,12 @@
  * FROM https://icons8.com/icon/pack/editing/metro
  */
  
-var domify = require('min-dom/lib/domify');
+var domify = require('domify');
 var tinycolor = require('tinycolor2');
 var Pickr = require('@simonwep/pickr');
 
 
-function PickrPlugin(eventBus, bpmnRules, editorActions, canvas, commandStack) {
+export default function SpectrumColorpickrPlugin(eventBus, bpmnRules, editorActions, canvas, commandStack) {
   var self = this;
   this.commandStack = commandStack;
 
@@ -24,31 +24,28 @@ function PickrPlugin(eventBus, bpmnRules, editorActions, canvas, commandStack) {
   eventBus.on('selection.changed', function(e) {
     self.selectedElement = e.newSelection[0];
 	self.selectedElements = e.newSelection;
-    //var color = PickrPlugin.prototype._getColor(self.selectedElement);
   });
 }
 
-PickrPlugin.prototype._getColorFill = function(element) {
-  if (element != null && element.businessObject != null) {
-    var businessObject = element.businessObject;
-    if (businessObject.di != null && businessObject.di.fill != null) {
-      return businessObject.di.fill;
-    }
+SpectrumColorpickrPlugin.prototype._getColorFill = function(element) {
+  if (element != null) {
+    if (element.di != null && element.di.fill != null) {
+      return element.di.fill;
+    } 
   }
   return null;
 }
 
-PickrPlugin.prototype._getColorStroke = function(element) {
-  if (element != null && element.businessObject != null) {
-    var businessObject = element.businessObject;
-    if (businessObject.di != null && businessObject.di.stroke != null) {
-      return businessObject.di.stroke;
-    }
+SpectrumColorpickrPlugin.prototype._getColorStroke = function(element) {
+  if (element != null) {
+    if (element.di != null && element.di.stroke != null) {
+      return element.di.stroke;
+    } 
   }
   return null;
 }
 
-PickrPlugin.prototype.toggle = function(canvas) {
+SpectrumColorpickrPlugin.prototype.toggle = function(canvas) {
   if (this.isActive) {
     this.pickr.destroyAndRemove();
     document.getElementById('pickr').remove();
@@ -60,7 +57,7 @@ PickrPlugin.prototype.toggle = function(canvas) {
   }
 };
 
-PickrPlugin.prototype.addPickr = function(container) {
+SpectrumColorpickrPlugin.prototype.addPickr = function(container) {
   var self = this;
   var pickrColor = '#FF0000';
  
@@ -91,7 +88,7 @@ PickrPlugin.prototype.addPickr = function(container) {
     container: newElement,
     default: pickrColor,
     theme: 'classic',
-    lockOpacity: false,
+    lockOpacity: true,
     showAlways: true,
     useAsButton: true,
 
@@ -114,13 +111,15 @@ PickrPlugin.prototype.addPickr = function(container) {
 
     components: {
       preview: true,
-      opacity: true,
+      opacity: false,
       hue: true,
 
       interaction: {
         hex: true,
         rgba: true,
+        hsla: true,
         hsva: true,
+        cmyk: true,
         input: true,
         clear: true,
         save: false
@@ -257,13 +256,13 @@ function setButtons(pickr, self) {
   function pickColor(e) {
     // console.log("btn_pickrPickColor");
 
-	var colorFill = PickrPlugin.prototype._getColorFill(self.selectedElement);
+	var colorFill = SpectrumColorpickrPlugin.prototype._getColorFill(self.selectedElement);
 	self.colorFill = colorFill!=null?colorFill:'white';
     if (pickr != null) {
       if (!self.mode_pickrStroke) pickr.setColor(self.colorFill, true);
     }
     
-    var colorStroke = PickrPlugin.prototype._getColorStroke(self.selectedElement);
+    var colorStroke = SpectrumColorpickrPlugin.prototype._getColorStroke(self.selectedElement);
     self.colorStroke = colorStroke!=null?colorStroke:'black'
     if (pickr != null) {
       if (self.mode_pickrStroke) pickr.setColor(self.colorStroke, true);
@@ -319,9 +318,11 @@ function setButtons(pickr, self) {
   }
 }
 
-PickrPlugin.$inject = [ 'eventBus', 'bpmnRules', 'editorActions', 'canvas', 'commandStack' ];
+SpectrumColorpickrPlugin.$inject = [ 'eventBus', 'bpmnRules', 'editorActions', 'canvas', 'commandStack' ];
 
+/*
 module.exports = {
   __init__: [ 'spectrumColorpickrPlugin' ],
-  spectrumColorpickrPlugin: [ 'type', PickrPlugin ]
+  spectrumColorpickrPlugin: [ 'type', SpectrumColorpickrPlugin ]
 };
+*/
